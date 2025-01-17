@@ -15,3 +15,15 @@ def pregunta_02():
     [('A', 8), ('B', 7), ('C', 5), ('D', 6), ('E', 14)]
 
     """
+    registros = {}
+    with open("files/input/data.csv", "r", encoding="utf-8") as file:
+        for line in file:
+            word = line.strip().split("\t")[0]
+            if word in registros:
+                registros[word] += 1
+            else:
+                registros[word] = 1
+    resultado = sorted(registros.items())
+    return resultado
+
+pregunta_02()

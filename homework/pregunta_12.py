@@ -15,3 +15,19 @@ def pregunta_12():
     {'A': 177, 'B': 187, 'C': 114, 'D': 136, 'E': 324}
 
     """
+    suma = {}
+    with open("files/input/data.csv", "r", encoding="utf-8") as file:
+        for line in file:
+            letra_col_1 = line.strip().split("\t")[0]
+            columna_5 = line.strip().split("\t")[4]
+            valores = [int(valor.split(":")[1]) for valor in columna_5.split(",")]
+            suma_valores = sum(valores)
+            if letra_col_1 in suma:
+                suma[letra_col_1] += suma_valores
+            else:
+                suma[letra_col_1] = suma_valores
+    suma_ordenado = dict(sorted(suma.items()))
+    return suma_ordenado
+
+resultado = pregunta_12()
+print(resultado)
